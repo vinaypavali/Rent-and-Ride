@@ -13,7 +13,6 @@ body{
 .nav ul li a{
     text-decoration: none;
     padding: 25px;
-   
     color: white;
     font-weight: bold;
 }
@@ -25,11 +24,11 @@ body{
 
 .nav{
     display: grid;
-    grid-template-columns: 4fr 4fr;
+    grid-template-columns: 3fr 3fr;
     align-items: center;
     margin-top: 10px;
     width: 1100px;
-    margin-left: 700px;
+    margin-left: 800px;
 }
 
 .form-container form{
