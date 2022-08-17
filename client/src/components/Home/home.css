@@ -1,15 +1,14 @@
-body{
-    color: rgb(107, 239, 107);
-}
+ 
  h1{
     margin-top: 100px;
     margin-left: 100px;
+    color: rgb(107, 239, 107);
  }
 /*.......... NavBar .......*/
 
 .navbar{
     height: 50px;
-    background-color: rgb(107, 239, 107);
+    color: rgb(107, 239, 107);
     display: flex;
     justify-content: center;
   }
@@ -39,7 +38,7 @@ body{
   /*.......... NavBar .......*/
 
    /*.......... Home Body .......*/
-   .form-container form{
+   .form-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -65,7 +64,7 @@ body{
       outline: none;
        
   }
-  .form-container form .ppl{
+  .ppl{
     flex: 1 1 1rem;
     margin-top: 18px;
     background-color: white;
@@ -76,18 +75,21 @@ body{
     cursor: pointer;
 }
 
-.form-container form #num{
+.ppl:disabled{
+  cursor: not-allowed;
+}
+
+ #num{
     flex: 1 1 5px;
     margin-top: 18px;
     margin-right: 0;
     margin-left: 0px;
     font-weight: bold;
     color: rgb(107, 239, 107);
-    padding: 2px;
-    
+    padding: 2px;  
     
 }
-  .form-container form .btn{
+   .btn{
       flex: 1 1 1rem;
       margin-top: 18px;
       margin-left: 0px;
@@ -99,4 +101,5 @@ body{
       border-radius: 5px;
       cursor: pointer;
   }
+
   /*.......... Home Body .......*/

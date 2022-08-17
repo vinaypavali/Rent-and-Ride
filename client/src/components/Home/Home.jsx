@@ -1,14 +1,28 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './home.css';
 
 const Home = () => {
+  const navigate = useNavigate();
  
 const [travel,setTravel]=useState({
   from:"",
   to:"",
   date: new Date()
 }) 
+
+const [options,setOtions]=useState({
+  members:1
+})
  
+const handleOption =(name,operation)=>{
+  setOtions(prev=>{
+    return{
+      ...prev,[name]:operation==='i'? options[name]+1:options[name]-1
+    }
+  })
+
+}
 const handleChange = (e)=>{
   console.log(e.target)
   const{name,value}=e.target
@@ -18,6 +32,9 @@ const handleChange = (e)=>{
   })
  }
 
+ const handleSearch = ()=>{
+   navigate("/travellist",{state:{travel}})
+ }
   return (
     <>
      <div className="navbar">
@@ -33,29 +50,27 @@ const handleChange = (e)=>{
          <h1>Looking to Travel in a Car</h1>
 
          <div className="form-container">
-          <form>
-
+          
             <div className="input-box">
             <span>From</span>
-            <input type="search" name="" value={travel.from} onChange={handleChange} placeholder="Leaving from..."/>
+            <input type="search" name="from" value={travel.from} onChange={handleChange} placeholder="Leaving from..."/>
             </div>
 
             <div className="input-box">
             <span>To</span>
-            <input type="search" name="" value={travel.to} onChange={handleChange} placeholder="Going to..."/>
+            <input type="search" name="to" value={travel.to} onChange={handleChange} placeholder="Going to..."/>
             </div>
 
             <div className="input-box">
             <span>Date</span>
-            <input type="date" name="" value={travel.date} onChange={handleChange}/>
+            <input type="date" name="date" value={travel.date} onChange={handleChange}/>
             </div>
-            {/* <button className="ppl" >-</button>
-            <span id="num">{count}</span>
-            <button className="ppl" onClick={() => setOption()}>+</button> */}
-            <input type="submit" value="Search" name="" id="" className="btn"></input>
 
+            <button disabled={options.members<=1} className="ppl" onClick={() => handleOption("members","d")} >-</button>
+            <span id="num">{options.members}</span>
+            <button disabled={options.members>=4} className="ppl" onClick={() => handleOption("members","i")}>+</button>
 
-          </form>
+            <button className="btn" onClick={handleSearch}>Search</button>
 
          </div>
     </>
