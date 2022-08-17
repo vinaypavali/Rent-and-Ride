@@ -77,13 +77,13 @@ body{
 }
 
 .form-container form #num{
-    flex: 1 1 1px;
+    flex: 1 1 5px;
     margin-top: 18px;
     margin-right: 0;
     margin-left: 0px;
     font-weight: bold;
     color: rgb(107, 239, 107);
-    padding: 0px;
+    padding: 2px;
     
     
 }

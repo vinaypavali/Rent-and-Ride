@@ -1,7 +1,23 @@
-import React from 'react';
-import './home.css'
+import React, {useState} from 'react';
+import './home.css';
 
 const Home = () => {
+ 
+const [travel,setTravel]=useState({
+  from:"",
+  to:"",
+  date: new Date()
+}) 
+ 
+const handleChange = (e)=>{
+  console.log(e.target)
+  const{name,value}=e.target
+  setTravel({
+    ...travel,
+    [name]:value,
+  })
+ }
+
   return (
     <>
      <div className="navbar">
@@ -18,23 +34,24 @@ const Home = () => {
 
          <div className="form-container">
           <form>
+
             <div className="input-box">
             <span>From</span>
-            <input type="search" name="" id="" placeholder="Leaving from..."/>
+            <input type="search" name="" value={travel.from} onChange={handleChange} placeholder="Leaving from..."/>
             </div>
 
             <div className="input-box">
             <span>To</span>
-            <input type="search" name="" id="" placeholder="Going to..."/>
+            <input type="search" name="" value={travel.to} onChange={handleChange} placeholder="Going to..."/>
             </div>
 
             <div className="input-box">
             <span>Date</span>
-            <input type="date" name="" id=""/>
+            <input type="date" name="" value={travel.date} onChange={handleChange}/>
             </div>
-            <button className="ppl">-</button>
-            <span id="num">0</span>
-            <button className="ppl">+</button>
+            {/* <button className="ppl" >-</button>
+            <span id="num">{count}</span>
+            <button className="ppl" onClick={() => setOption()}>+</button> */}
             <input type="submit" value="Search" name="" id="" className="btn"></input>
 
 
