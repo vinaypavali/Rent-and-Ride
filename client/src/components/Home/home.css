@@ -66,23 +66,36 @@ body{
        
   }
   .form-container form .ppl{
-    flex: 1 1 2rem;
+    flex: 1 1 1rem;
     margin-top: 18px;
     background-color: white;
     color: grey;
     border: 1px solid rgb(107, 239, 107);
-    padding: 10px 30px;
+    padding: 10px 10px;
     border-radius: 5px;
     cursor: pointer;
 }
+
+.form-container form #num{
+    flex: 1 1 1px;
+    margin-top: 18px;
+    margin-right: 0;
+    margin-left: 0px;
+    font-weight: bold;
+    color: rgb(107, 239, 107);
+    padding: 0px;
+    
+    
+}
   .form-container form .btn{
-      flex: 1 1 2rem;
+      flex: 1 1 1rem;
       margin-top: 18px;
+      margin-left: 0px;
       font-weight: bold;
       background-color: rgb(107, 239, 107);
       color: white;
       border: 1px solid rgb(107, 239, 107);
-      padding: 10px 30px;
+      padding: 10px 10px;
       border-radius: 5px;
       cursor: pointer;
   }

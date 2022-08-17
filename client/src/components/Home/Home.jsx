@@ -32,9 +32,10 @@ const Home = () => {
             <span>Date</span>
             <input type="date" name="" id=""/>
             </div>
-            <input type="submit" value="-" name="" id="" class="ppl"></input>
-            <input type="submit" value="+" name="" id="" class="ppl"></input>
-            <input type="submit" value="Search" name="" id="" class="btn"></input>
+            <button className="ppl">-</button>
+            <span id="num">0</span>
+            <button className="ppl">+</button>
+            <input type="submit" value="Search" name="" id="" className="btn"></input>
 
 
           </form>

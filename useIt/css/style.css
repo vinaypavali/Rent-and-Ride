@@ -57,11 +57,12 @@ body{
     outline: none;
 
 }
+
 .form-container form .btn{
     flex: 1 1 6rem;
     margin-top: 18px;
     color: grey;
     border: 1px solid rgb(107, 239, 107);
-    padding: px 30px;
+    padding: px 10px;
     border-radius: 5px;
 }
