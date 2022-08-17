@@ -35,14 +35,23 @@ const handleChange = (e)=>{
  const handleSearch = ()=>{
    navigate("/travellist",{state:{travel}})
  }
+
+ const handleRegister = ()=>{
+  navigate("/register")
+}
+ const handleLogin = ()=>{
+  navigate("/login" )
+}
+
+ 
   return (
     <>
      <div className="navbar">
         <div className="navContainer">
             <span className='logo'>Rent & Ride</span>
             <div className="navItems">
-                <button className="navButton">Register</button>
-                <button className="navButton">Login</button>   
+                <button className="navButton"  onClick={handleRegister}>Register</button>
+                <button className="navButton"  onClick={handleLogin}>Login</button>   
             </div>
         </div>
          </div>
