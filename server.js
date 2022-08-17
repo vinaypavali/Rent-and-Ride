@@ -1,7 +1,15 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { default: mongoose } = require('mongoose');
+
+const Profile = require('./model/profileSchema');
+const User = require('./model/userSchema');
+
 const app = express();
+const router = express.Router()
+app.use(express.json())
+
+app.use(router)
 
 
 dotenv.config({path:'./config.env'})
@@ -23,17 +31,54 @@ const middleware=(req,res,next)=>{
 }
 
 app.get('/',(req,res)=>{ 
-  res.send("Pome Page")
+  res.send("Home Page")
 })
 
-app.get('/signup',(req,res)=>{
+router.get('/signup',(req,res)=>{
     res.send("Signup Page")
+
   })
+
+  router.post('/signup',async(req,res)=>{
+ 
+    const {name,email,phone,password,cpassword}=req.body;
+    const user = new User({name,email,phone,password,cpassword})
+    await user.save(err=>{
+      if (err) {
+          res.send(err)
+      } else {
+          res.send({message:"Registered"})
+      }
+      
+  })
+     
+
+  })
+ 
+
+
   app.get('/login',(req,res)=>{
     res.send("Login Page")
   })
-  app.get('/profile',middleware,(req,res)=>{
-    res.send("Profile Page")
+
+  router.get('/profile',(req,res)=>{
+    
+     
+  })
+
+  router.post('/profile',async(req,res)=>{
+ 
+    const {name,email,phone,password,cpassword}=req.body;
+    const profile = new Profile({name,email,phone,password,cpassword})
+    await profile.save(err=>{
+      if (err) {
+          res.send(err)
+      } else {
+          res.send({message:"Profile"})
+      }
+      
+  })
+     
   })
 
   app.get('/travel',(req,res)=>{
@@ -41,4 +86,4 @@ app.get('/signup',(req,res)=>{
   })
 
 
-app.listen(PORT,()=>console.log(`Server started...${PORT}`))
+app.listen(PORT,()=>console.log(`Server started...${PORT}`)) 
