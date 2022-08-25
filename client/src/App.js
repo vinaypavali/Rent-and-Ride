@@ -5,6 +5,7 @@ import AddTravel from  './components/AddTravel/AddTravel';
 import Login from  './components/Login/Login';
 import Register from  './components/Register/Register';
 import TravelList from "./components/TravelList/TravelList";
+import Profile from './components/Profile/Profile'
  
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     <Route path="/register" element={<Register/>}/>
     <Route path="/addtravel" element={<AddTravel/>}/>
     <Route path="/travellist" element={<TravelList/>}/>
-
+    <Route path="/profile" element={<Profile/>}/>
     </Routes>
     </BrowserRouter>
   );

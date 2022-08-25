@@ -1,10 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { default: mongoose } = require('mongoose');
-
-const Profile = require('./model/profileSchema');
 const User = require('./model/userSchema');
-
+const Post = require('./model/postSchema')
 const app = express();
 const router = express.Router()
 app.use(express.json())
@@ -25,21 +23,8 @@ mongoose.connect(DB,{
 }).then(()=>console.log("MongoDB Connected..."))
 .catch((err)=>console.log(`Not Connected-- ${err}`))
 
-const middleware=(req,res,next)=>{
-  console.log(`hello middleware`)
-  next();
-}
 
-app.get('/',(req,res)=>{ 
-  res.send("Home Page")
-})
-
-router.get('/signup',(req,res)=>{
-    res.send("Signup Page")
-
-  })
-
-  router.post('/signup',async(req,res)=>{
+  router.post('/register',async(req,res)=>{
  
     const {name,email,phone,password,cpassword}=req.body;
     const user = new User({name,email,phone,password,cpassword})
@@ -50,40 +35,58 @@ router.get('/signup',(req,res)=>{
           res.send({message:"Registered"})
       }
       
-  })
-     
-
-  })
- 
-
-
-  app.get('/login',(req,res)=>{
-    res.send("Login Page")
+       })   
   })
 
-  router.get('/profile',(req,res)=>{
-    
-     
-  })
 
-  router.post('/profile',async(req,res)=>{
- 
-    const {name,email,phone,password,cpassword}=req.body;
-    const profile = new Profile({name,email,phone,password,cpassword})
-    await profile.save(err=>{
+ // Login User
+router.post('/login',(req,res)=>{
+  const {email,password}=req.body
+  User.findOne({email:email},(err,user)=>{
+      if (user) {
+          if(password===user.password){
+              res.send({message:"user login sucessfully ",user:user})
+          }else{
+              res.send({message:"incorrect password"})
+          }
+          
+     }else{
+      res.send({message:"user not registered"}) 
+     }
+
+  }
+  )
+
+})
+
+ //Add Travel
+  router.post('/post',async(req,res)=>{
+
+    const {fromtime,totime,from,to,price,members,date}=req.body;
+    const post = new Post({fromtime,totime,from,to,price,members,date})
+    await post.save(err=>{
       if (err) {
           res.send(err)
       } else {
-          res.send({message:"Profile"})
-      }
-      
+          res.send({message:"Travel Posted"})
+      } 
   })
      
   })
 
-  app.get('/travel',(req,res)=>{
-    res.send("Post travel")
-  })
+  // Get All Travel Posts
+
+  router.get("/allposts", async (req, res) => {
+    try {
+       const allposts = await Post.find();
+       res.status(200).json(allposts);
+      
+    } catch (err) {
+      
+    }
+  });
 
 
-app.listen(PORT,()=>console.log(`Server started...${PORT}`)) 
+
+ 
+app.listen(PORT,()=>console.log(`Server started...`)) 

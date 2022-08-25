@@ -1,7 +1,54 @@
-import React from 'react'
+ import React, {useState} from 'react';
+import axios from 'axios'
 import './addtravel.css'
 
 const Travel = () => {
+
+  const [travel,setTravel]=useState({
+    from:"",
+    to:"",
+    fromtime:"",
+    fromto:"",
+    price:"",
+    date: new Date()
+  }) 
+
+  const [options,setOtions]=useState({
+    members:1
+  })
+   
+  const handleOption =(name,operation)=>{
+    setOtions(prev=>{
+      return{
+        ...prev,[name]:operation==='i'? options[name]+1:options[name]-1
+      }
+    })
+  
+  }
+  const handleChange = (e)=>{
+    console.log(e.target)
+    const{name,value}=e.target
+    setTravel({
+      ...travel,
+      [name]:value,
+    })
+   }
+
+   const add=()=>{
+ 
+    const { from, to, fromtime, totime, price, date } = travel
+    const {members}=options
+    if(from && to && fromtime && totime && price && members && date){
+        axios.post("/post", travel,options)
+        .then( res => {
+            alert(res.data.message)
+        })
+    } else {
+        alert("invalid input")
+    }
+   }
+
+
   return (
     <>
     <div className="navbar">
@@ -17,30 +64,44 @@ const Travel = () => {
         <h1>Share Your Car Journey</h1>
 
         <div className="form-container">
-         <form>
-           <div className="input-box">
-           <span>From</span>
-           <input type="search" name="" id="" placeholder="Leaving from..."/>
-           </div>
+          
+            <div className="input-box">
+            <span>From</span>
+            <input type="search" name="from" value={travel.from} onChange={handleChange} placeholder="Leaving from..."/>
+            </div>
 
-           <div className="input-box">
-           <span>To</span>
-           <input type="search" name="" id="" placeholder="Going to..."/>
-           </div>
+            <div className="input-box">
+            <span>From Time</span>
+            <input type="search" name="fromtime" value={travel.fromtime} onChange={handleChange} placeholder="Leaving Time..."/>
+            </div>
 
-           <div className="input-box">
-           <span>Date</span>
-           <input type="date" name="" id=""/>
-           </div>
-           {/* <button className="ppl" >-</button>
-           <span id="num">{count}</span>
-           <button className="ppl" onClick={() => setOption()}>+</button> */}
-           <input type="submit" value="Search" name="" id="" className="btn"></input>
+            <div className="input-box">
+            <span>To</span>
+            <input type="search" name="to" value={travel.to} onChange={handleChange} placeholder="Going to..."/>
+            </div>
 
+            <div className="input-box">
+            <span>To Time</span>
+            <input type="search" name="totime" value={travel.time} onChange={handleChange} placeholder="Arriving Time..."/>
+            </div>
 
-         </form>
+            <div className="input-box">
+            <span>Date</span>
+            <input type="date" name="date" value={travel.date} onChange={handleChange}/>
+            </div>
 
-        </div>
+            <button disabled={options.members<=1} className="ppl" onClick={() => handleOption("members","d")} >-</button>
+            <span id="num">{options.members}</span>
+            <button disabled={options.members>=4} className="ppl" onClick={() => handleOption("members","i")}>+</button>
+
+            <div className="input-box">
+            <span>Price</span>
+            <input type="search" name="price" value={travel.price} onChange={handleChange} placeholder="Price"/>
+            </div>
+
+            <button className="btn" onClick={add} >Publish</button>
+
+         </div>
    </>
   )
 }

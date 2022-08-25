@@ -1,0 +1,89 @@
+.listContainter{
+    
+    margin-top: 20px;
+    height: 100%;
+    width: 100%;
+    gap: 10px;
+}
+
+.list{
+   background-color: #ecf0f3;
+   color: rgb(107, 239, 107);
+   border-radius: 5px;
+   height: 230px;
+   width: 660px;
+   margin: 0px 250px 0px 250px;
+   box-shadow: 14px 14px 20px  #cbced1, -14px  -14px 20px #cbced1;
+   display: grid;
+   grid-template-rows: 150px 80px;
+}
+
+ .travelDetails{
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 120px 350px 1fr;
+    
+}
+.travelTime{
+    color: rgb(107, 239, 107);
+    display: grid;
+    grid-template-rows: 1fr 1fr ;
+    text-align: left;
+    
+}
+.fromTime{
+    margin-left: 25px;
+    margin-top: 2px;
+
+}
+.toTime{
+    margin-left: 25px;
+    margin-top: 2px;
+}
+.travelPlace{
+    color: rgb(107, 239, 107);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+.fromPlace{
+    color: rgb(107, 239, 107);
+}
+.toPlace{
+    color: rgb(107, 239, 107);
+}
+.travelAmount{
+    color: white;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    
+}
+.price{
+    color: rgb(107, 239, 107);
+    
+}
+.number{
+    color: rgb(107, 239, 107);
+}
+.driverDetails{
+    color: rgb(107, 239, 107);
+    border-top: 1px solid black;
+    display: grid;
+    grid-template-columns: 120px 350px 1fr;
+   
+}
+.driverImg img{
+    margin-top: 10px;
+    margin-left: 25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+     
+}
+.driverName {
+    color: rgb(107, 239, 107);
+    
+  
+}
+.driverBook .btn{
+    color: white;
+}
