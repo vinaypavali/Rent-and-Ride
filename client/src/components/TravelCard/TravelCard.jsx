@@ -2,6 +2,11 @@ import React from 'react'
 import './travelcard.css'
 
 const TravelCard = ({post}) => {
+
+  const book=()=>{
+    alert("Your Ride has Booked")
+  }
+
   return (
     <>
     <div className="listContainter">
@@ -25,9 +30,9 @@ const TravelCard = ({post}) => {
               <div className='driverImg'>
                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png" alt="profile" />
                </div>
-              <div className='driverName'><h3>Vinay Kumar</h3></div>
+              <div className='driverName'><h3>Jayanth</h3></div>
               <div className='driverBook'>
-               <button className='btn'>Book Ride</button>
+               <button className='btn' onClick={book}>Book Ride</button>
               </div>
        </div>
      </div>

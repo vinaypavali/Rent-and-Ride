@@ -1,0 +1,44 @@
+/*.......... NavBar .......*/
+
+.navbar{
+  height: 50px;
+  color: rgb(107, 239, 107);
+  display: flex;
+  justify-content: center;
+}
+
+.navContainer{
+  width: 100%;
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  font-weight: bold;
+}
+
+.navButton{
+  margin-left: 20px;
+  border: none;
+  background-color: rgb(107, 239, 107);
+  font-weight: bold;
+  padding: 10px 10px;
+  cursor: pointer;
+  color: white;
+}
+/*.......... NavBar .......*/
+
+.con{
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+
+ }
+
+ .con img{   
+  width: 1280px;
+  height: 583px;
+  }

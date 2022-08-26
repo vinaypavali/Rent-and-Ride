@@ -38,26 +38,24 @@ const handleChange = (e)=>{
  const handleAddTravel = ()=>{
   navigate("/addtravel")
 }
- const handleRegister = ()=>{
-  navigate("/register")
-}
- const handleLogin = ()=>{
+
+ const handleProfile = ()=>{
   navigate("/login" )
 }
 
- 
   return (
     <>
      <div className="navbar">
         <div className="navContainer">
             <span className='logo'>Rent & Ride</span>
             <div className="navItems">
-                <button className="navButton"  onClick={handleAddTravel}>Publish a Ride</button>
-                <button className="navButton"  onClick={handleRegister}>Register</button>
-                <button className="navButton"  onClick={handleLogin}>Login</button>   
+              <button className="navButton"  onClick={handleAddTravel}>Publish a Ride</button>
+                <button className="navButton"  onClick={handleProfile}>Profile</button> 
+                
             </div>
         </div>
          </div>
+     
          
          <h1>Looking to Travel in a Car</h1>
 

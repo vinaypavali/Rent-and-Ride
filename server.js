@@ -24,20 +24,58 @@ mongoose.connect(DB,{
 .catch((err)=>console.log(`Not Connected-- ${err}`))
 
 
-  router.post('/register',async(req,res)=>{
- 
-    const {name,email,phone,password,cpassword}=req.body;
-    const user = new User({name,email,phone,password,cpassword})
-    await user.save(err=>{
-      if (err) {
-          res.send(err)
-      } else {
-          res.send({message:"Registered"})
-      }
-      
-       })   
-  })
+// Register User
+router.post('/register',async(req,res)=>{
+  const {name,email,phone,password,cpassword}=req.body;
+   let exist = await User.findOne({email})
+      if(exist) {
+          res.send({message:"user Exist"})
+     }
+     if(password !== cpassword){
+      res.send({message:"Password doesn't match"})
+     }else{
+     const user = new User({
+      name,email,phone,password,cpassword
+       })
+      await user.save(err=>{
+          if (err) {
+              res.send(err)
+          } else {
+              res.send({message:"Registered"})
+          }
+          
+      })
+     }
+  
+})
 
+router.post('/register',async (req,res)=>{
+  const {name,email,phone,password,cpassword}=req.body
+
+ if(!name || !email || !phone || !password){
+     return res.status(422).json({message:"Please Fill all Fields"});
+ }
+
+ try{
+
+     const userExist = await User.findOne({email:email})
+         if(userExist){
+             return res.status(422).json({message:"Email already Exist"});
+         }
+         const user = new User({name,email,phone,password,cpassword});
+          
+         const userReg = await user.save();
+         if(userReg){
+             res.status(201).json({message:'User Registered'})
+             res.json(userReg)
+         }else{
+             res.status(500).json({err})
+         }
+
+ }catch(err){
+     res.status(500).json({err})
+ }
+})
 
  // Login User
 router.post('/login',(req,res)=>{
